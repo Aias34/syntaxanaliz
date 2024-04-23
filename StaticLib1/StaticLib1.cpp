@@ -182,7 +182,7 @@ pair<int, Lexem> tick(int state, istream& stream, char& cache) {
     case 2: {
         if (cache == '&') {
             read(cache, stream);
-            return { 13, {"",""} };
+            return { 11, {"",""} };
         }
         else {
             return { -1, {"error",""} };
