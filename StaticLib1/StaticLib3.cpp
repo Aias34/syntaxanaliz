@@ -13,13 +13,8 @@ Syntax::Syntax(istream& stream) : lexer{ stream }
     cur = lexer.getNextLexem();
     bool res = E(tree);
 
-    if (res) {
-        if (cur == LEX_EOF) {
-            cout << "True" << endl;
-        }
-        else {
-            cout << "False" << endl;
-        }
+    if (res && cur == LEX_EOF) {
+        cout << "True" << endl;
     }
     else {
         cout << "False" << endl;
@@ -875,7 +870,7 @@ bool Syntax::DeclVarList() {
             }
         }
     }
-    return true;
+    return false;
 }
 
 bool Syntax::InitVar() {
@@ -893,7 +888,7 @@ bool Syntax::InitVar() {
             return true;
         }
     }
-    return true;
+    return false;
 }
 
 bool Syntax::ParamList() {
@@ -910,7 +905,7 @@ bool Syntax::ParamList() {
         }
         return true;
     }
-    return true;
+    return false;
 }
 
 bool Syntax::ArgList() {
@@ -946,7 +941,7 @@ bool Syntax::ParamListList() {
             return true;
         }
     }
-    return true;
+    return false;
 }
 
 bool Syntax::StmtList() {
@@ -959,7 +954,7 @@ bool Syntax::StmtList() {
     if (!StmtList()) {
         return true;
     }
-    return true;
+    return false;
 }
 
 bool Syntax::Stmt() {
@@ -1127,7 +1122,7 @@ bool Syntax::ForInit() {
     if (!AssignOrCall()) {
         return false;
     }
-    return true;
+    return false;
 }
 
 bool Syntax::ForExp() {
@@ -1137,7 +1132,7 @@ bool Syntax::ForExp() {
     if (!E(tree)) {
         return false;
     }
-    return true;
+    return false;
 }
 
 bool Syntax::ForLoop() {
@@ -1154,7 +1149,7 @@ bool Syntax::ForLoop() {
     else if (!AssignOrCall()) {
         return false;
     }
-    return true;
+    return false;
 }
 
 bool Syntax::IfOp() {
@@ -1195,7 +1190,7 @@ bool Syntax::ElsePart() {
         }
         return true;
     }
-    return true;
+    return false;
 }
 
 bool Syntax::SwitchOp() {
@@ -1250,7 +1245,7 @@ bool Syntax::CasesList() {
     if (!CasesList()) {
         return false;
     }
-    return true;
+    return false;
 }
 
 bool Syntax::Acase() {
