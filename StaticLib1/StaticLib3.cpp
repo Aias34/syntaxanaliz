@@ -8,26 +8,7 @@
 
 using namespace std;
 
-Syntax::Syntax(istream& stream) : lexer{ stream }
-{
-    cur = lexer.getNextLexem();
-    bool res = E(tree);
-
-    if (res && cur == LEX_EOF) {
-        cout << "True" << endl;
-    }
-    else {
-        cout << "False" << endl;
-    }
-}
-
-Syntax::~Syntax()
-{
-    // dtor
-}
-
-bool Syntax::E(vector <int>& tree) {
-
+bool Syntax::Tree(vector <int>& tree, string name) {
     for (int i = 1; i < tree.size(); i++) {
         if (tree.size() == 1) {
             break;
@@ -50,10 +31,32 @@ bool Syntax::E(vector <int>& tree) {
         }
     }
     d += sub;
-    d += "E";
+    d += name;
     cout << d << endl;
     d = "";
     sub = "";
+    return 0;
+}
+Syntax::Syntax(istream& stream) : lexer{ stream }
+{
+    cur = lexer.getNextLexem();
+    bool res = E(tree);
+
+    if (res && cur == LEX_EOF) {
+        cout << "True" << endl;
+    }
+    else {
+        cout << "False" << endl;
+    }
+}
+
+Syntax::~Syntax()
+{
+    // dtor
+}
+
+bool Syntax::E(vector <int>& tree) {
+    Tree(tree, "E");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
@@ -68,32 +71,7 @@ bool Syntax::E(vector <int>& tree) {
 }
 
 bool Syntax::E7(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E7";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E7");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
@@ -113,33 +91,7 @@ bool Syntax::E7(vector <int>& tree) {
 }
 
 bool Syntax::E7L(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E7L";
-    cout << d << endl;
-    d = "";
-    sub = "";
-
+    Tree(tree, "E7L");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return true;
@@ -165,32 +117,7 @@ bool Syntax::E7L(vector <int>& tree) {
 }
 
 bool Syntax::E6(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E6";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E6");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
@@ -210,32 +137,7 @@ bool Syntax::E6(vector <int>& tree) {
 }
 
 bool Syntax::E6L(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E6L";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E6L");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return true;
@@ -261,32 +163,7 @@ bool Syntax::E6L(vector <int>& tree) {
 }
 
 bool Syntax::E5(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E5";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E5");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
@@ -306,32 +183,7 @@ bool Syntax::E5(vector <int>& tree) {
 }
 
 bool Syntax::E5L(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E5L";
-    cout << d << endl;
-    d = "";
-    sub = "";;
+    Tree(tree, "E5L");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return true;
@@ -387,32 +239,7 @@ bool Syntax::E5L(vector <int>& tree) {
 }
 
 bool Syntax::E4(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E4";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E4");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
@@ -432,32 +259,7 @@ bool Syntax::E4(vector <int>& tree) {
 }
 
 bool Syntax::E4L(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E4L";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E4L");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return true;
@@ -495,32 +297,7 @@ bool Syntax::E4L(vector <int>& tree) {
 }
 
 bool Syntax::E3(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E3";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E3");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
@@ -540,32 +317,7 @@ bool Syntax::E3(vector <int>& tree) {
 }
 
 bool Syntax::E3L(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E3L";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E3L");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return true;
@@ -589,32 +341,7 @@ bool Syntax::E3L(vector <int>& tree) {
 }
 
 bool Syntax::E2(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E2";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E2");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
@@ -638,32 +365,7 @@ bool Syntax::E2(vector <int>& tree) {
 }
 
 bool Syntax::E1(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E1";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E1");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
@@ -727,32 +429,7 @@ bool Syntax::E1(vector <int>& tree) {
 }
 
 bool Syntax::E1L(vector <int>& tree) {
-    for (int i = 1; i < tree.size(); i++) {
-        if (tree.size() == 1) {
-            break;
-        }
-        if (i == tree.size() - 1) {
-            if (tree[i] == 0) {
-                d += "|_";
-            }
-            else if (tree[i] == 1) {
-                d += "|-";
-            }
-        }
-        else {
-            if (tree[i] == 0) {
-                d += ' ';
-            }
-            else if (tree[i] == 1) {
-                d += '|';
-            }
-        }
-    }
-    d += sub;
-    d += "E1L";
-    cout << d << endl;
-    d = "";
-    sub = "";
+    Tree(tree, "E1L");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return true;
@@ -763,549 +440,917 @@ bool Syntax::E1L(vector <int>& tree) {
         tree.pop_back();
         return true;
     }
+    else if (cur.first == "lpar") {
+        sub += " lpar ";
+        cur = lexer.getNextLexem();
+        tree.push_back(0);
+        if (!ArgList(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        if (cur.first == "rpar") {
+            sub += " rpar ";
+            cur = lexer.getNextLexem();
+        }
+        tree.pop_back();
+        return true;
+    }
     else {
+        tree.pop_back();
+        return true;
+    }
+}
+
+bool Syntax::ArgList(vector <int>& tree) {
+    Tree(tree, "ArgList");
+    if (cur == LEX_EOF) {
+        tree.pop_back();
+        return true;
+    }
+    tree.push_back(1);
+    if (!E(tree)) {
         tree.pop_back();
         return false;
     }
-}
-
-bool Syntax::Type() {
-    if (cur == LEX_EOF) {
+    tree.push_back(0);
+    if (!ArgListL(tree)) {
+        tree.pop_back();
         return false;
     }
-    if (cur.first == "kwint") {
-        cur = lexer.getNextLexem();
-        return true;
-    }
-    else if (cur.first == "kwchar") {
-        cur = lexer.getNextLexem();
-        return true;
-    }
-    return false;
-}
-
-bool Syntax::DeclareStmt() {
-    if (cur == LEX_EOF) {
-        return false;
-    }
-    if (!Type()) {
-        return false;
-    }
-    if (cur.first == "id") {
-        cur = lexer.getNextLexem();
-        if (!DeclareStmtList()) {
-            return false;
-        }
-    }
+    tree.pop_back();
     return true;
 }
 
-bool Syntax::DeclareStmtList() {
+bool Syntax::ArgListL(vector <int>& tree) {
+    Tree(tree, "ArgListL");
     if (cur == LEX_EOF) {
+        tree.pop_back();
+        return true;
+    }
+    tree.push_back(1);
+    if (cur.first == "comma") {
+        sub += " comma ";
+        cur = lexer.getNextLexem();
+        tree.push_back(1);
+        if (!E(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.push_back(0);
+        if (!ArgListL(tree)) {
+            tree.pop_back();
+            return false;
+        }
+    }
+    tree.pop_back();
+    return true;
+}
+
+bool Syntax::Type(vector <int>& tree) {
+    Tree(tree, "Type");
+    if (cur == LEX_EOF) {
+        tree.pop_back();
+        return false;
+    }
+    if (cur.first == "kwint") {
+        sub += " kwint ";
+        cur = lexer.getNextLexem();
+        tree.pop_back();
+        return true;
+    }
+    else if (cur.first == "kwchar") {
+        sub += " kwchar ";
+        cur = lexer.getNextLexem();
+        tree.pop_back();
+        return true;
+    }
+    tree.pop_back();
+    return false;
+}
+
+bool Syntax::DeclareStmt(vector <int>& tree) {
+    Tree(tree, "DeclareStmt");
+    if (cur == LEX_EOF) {
+        tree.pop_back();
+        return false;
+    }
+    tree.push_back(1);
+    if (!Type(tree)) {
+        tree.pop_back();
+        return false;
+    }
+    if (cur.first == "id") {
+        sub += " ";
+        sub += cur.second;
+        sub += " ";
+        cur = lexer.getNextLexem();
+        tree.push_back(0);
+        if (!DeclareStmtList(tree)) {
+            tree.pop_back();
+            return false;
+        }
+    }
+    tree.pop_back();
+    return true;
+}
+
+bool Syntax::DeclareStmtList(vector <int>& tree) {
+    Tree(tree, "DeclareStmtL");
+    if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "lpar") {
         cur = lexer.getNextLexem();
-        if (!ParamList()) {
+        tree.push_back(1);
+        if (!ParamList(tree)) {
+            tree.pop_back();
             return false;
         }
         if (cur.first == "rpar") {
+            sub += " rpar ";
             cur = lexer.getNextLexem();
             if (cur.first == "lbrace") {
+                sub += " lbrace ";
                 cur = lexer.getNextLexem();
-                if (!StmtList()) {
+                tree.push_back(0);
+                if (!StmtList(tree)) {
+                    tree.pop_back();
                     return false;
                 }
                 if (cur.first == "rbrace") {
+                    sub += " rbrace ";
                     cur = lexer.getNextLexem();
+                    tree.pop_back();
                     return true;
                 }
             }
         }
     }
     else if (cur.first == "opassign") {
+        sub += " opassign ";
         cur = lexer.getNextLexem();
         if (cur.first == "num") {
-            cur = lexer.getNextLexem();
-            if (!DeclVarList()) {
+            sub += " ";
+            sub += cur.second;
+            sub += " ";
+            cur = lexer.getNextLexem(); 
+            tree.push_back(0);
+            if (!DeclVarList(tree)) {
+                tree.pop_back();
                 return false;
             }
             if (cur.first == "semicolon") {
+                sub += " semicolon ";
                 cur = lexer.getNextLexem();
+                tree.pop_back();
                 return true;
             }
             else {
+                tree.pop_back();
                 return false;
             }
         }
         else {
+            tree.pop_back();
             return false;
         }
     }
-    else if (DeclVarList()) {
+    else if (DeclVarList(tree)) {
         if (cur.first == "semicolon") {
+            sub += " semicolon ";
             cur = lexer.getNextLexem();
+            tree.pop_back();
             return true;
         }
         else {
+            tree.pop_back();
             return false;
         }
     }
-    return true;
+    tree.pop_back();
+    return false;
 }
 
-bool Syntax::DeclVarList() {
+bool Syntax::DeclVarList(vector <int>& tree) {
+    tree.push_back(0);
+    Tree(tree, "DeclVarList");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
     if (cur.first == "comma") {
+        sub += " comma ";
         cur = lexer.getNextLexem();
         if (cur.first == "id") {
+            sub += " ";
+            sub += cur.second;
+            sub += " ";
             cur = lexer.getNextLexem();
-            if (!InitVar()) {
+            tree.push_back(1);
+            if (!InitVar(tree)) {
+                tree.pop_back();
                 return false;
             }
-            if (!DeclVarList()) {
+            tree.push_back(0);
+            if (!DeclVarList(tree)) {
+                tree.pop_back();
                 return false;
             }
         }
     }
-    return false;
+    tree.pop_back();
+    return true;
 }
 
-bool Syntax::InitVar() {
+bool Syntax::InitVar(vector <int>& tree) {
+    Tree(tree, "InitVar");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
     if (cur.first == "opassign") {
+        sub += " opassign ";
         cur = lexer.getNextLexem();
         if (cur.first == "num") {
+            sub += " ";
+            sub += cur.second;
+            sub += " ";
             cur = lexer.getNextLexem();
+            tree.pop_back();
             return true;
         }
         else if (cur.first == "char") {
+            sub += " ";
+            sub += cur.second;
+            sub += " ";
             cur = lexer.getNextLexem();
+            tree.pop_back();
             return true;
         }
     }
-    return false;
+    tree.pop_back();
+    return true;
 }
 
-bool Syntax::ParamList() {
+bool Syntax::ParamList(vector <int>& tree) {
+    Tree(tree, "ParamList");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
-    if (!Type()) {
+    tree.push_back(1);
+    if (!Type(tree)) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "id") {
         cur = lexer.getNextLexem();
-        if (!ParamListList()) {
+        sub += " ";
+        sub += cur.second;
+        sub += " ";
+        tree.push_back(0);
+        if (!ParamListList(tree)) {
+            tree.pop_back();
             return false;
         }
+        tree.pop_back();
         return true;
     }
-    return false;
-}
-
-bool Syntax::ArgList() {
-    if (cur == LEX_EOF) {
-        return true;
-    }
-    if (!E(tree)) {
-        return true;
-    }
-    if (cur.first == "comma") {
-        cur = lexer.getNextLexem();
-        if (!ArgList()) {
-            return true;
-        }
-    }
+    tree.pop_back();
     return true;
 }
 
-bool Syntax::ParamListList() {
+
+bool Syntax::ParamListList(vector <int>& tree) {
+    Tree(tree, "ParamListList");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
     if (cur.first == "comma") {
         cur = lexer.getNextLexem();
-        if (!Type()) {
+        sub += " comma ";
+        tree.push_back(1);
+        if (!Type(tree)) {
+            tree.pop_back();
             return false;
         }
         if (cur.first == "id") {
+            sub += " ";
+            sub += cur.second;
+            sub += " ";
             cur = lexer.getNextLexem();
-            if (!ParamListList()) {
+            tree.push_back(0);
+            if (!ParamListList(tree)) {
+                tree.pop_back();
                 return false;
             }
+            tree.pop_back();
             return true;
         }
     }
-    return false;
+    tree.pop_back();
+    return true;
 }
 
-bool Syntax::StmtList() {
+bool Syntax::StmtList(vector <int>& tree) {
+    Tree(tree, "StmtList");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
-    if (!Stmt()) {
+    if (cur.first == "rbrace") {
         return true;
     }
-    if (!StmtList()) {
-        return true;
-    }
-    return false;
-}
+    tree.push_back(1);
+    if (!Stmt(tree)) {
+        tree.pop_back();
 
-bool Syntax::Stmt() {
-    if (cur == LEX_EOF) {
         return false;
     }
-    if (DeclareStmt()) {
+    tree.push_back(0);
+    if (!StmtList(tree)) {
+        tree.pop_back();
         return true;
     }
-    else if (AssignOrCallOp()) {
+    tree.pop_back();
+    return true;
+}
+
+bool Syntax::Stmt(vector <int>& tree) {
+    Tree(tree, "Stmt");
+    if (cur == LEX_EOF) {
+        tree.pop_back();
+        return false;
+    }
+    if (cur.first == "kwchar" || cur.first == "kwint") {
+        tree.push_back(0);
+        if (!DeclareStmt(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.pop_back();
         return true;
     }
-    else if (ForOp()) {
+    else if (cur.first == "id") {
+        tree.push_back(0);
+        if (!AssignOrCallOp(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.pop_back();
         return true;
     }
-    else if (IfOp()) {
+    else if (cur.first == "kwfor") {
+        tree.push_back(0);
+        if (!ForOp(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.pop_back();
         return true;
     }
-    else if (SwitchOp()) {
+    else if (cur.first == "kwif") {
+        tree.push_back(0);
+        if (!IfOp(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.pop_back();
         return true;
     }
-    else if (IOp()) {
+    else if (cur.first == "kwwhile") {
+        tree.push_back(0);
+        if (!WhileOp(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.pop_back();
         return true;
     }
-    else if (OOp()) {
+    else if (cur.first == "kwswitch") {
+        tree.push_back(0);
+        if (!SwitchOp(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.pop_back();
+        return true;
+    }
+    else if (cur.first == "kwin") {
+        tree.push_back(0);
+        if (!IOp(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.pop_back();
+        return true;
+    }
+    else if (cur.first == "kwout") {
+        tree.push_back(0);
+        if (!OOp(tree)) {
+            tree.pop_back();
+            return false;
+        }
+        tree.pop_back();
         return true;
     }
     else if (cur.first == "semicolon") {
+        sub += " semicolon ";
         cur = lexer.getNextLexem();
+        tree.pop_back();
         return true;
     }
     else if (cur.first == "lbrace") {
+        sub += " lbrace ";
         cur = lexer.getNextLexem();
-        if (!StmtList()) {
+        tree.push_back(0);
+        if (!StmtList(tree)) {
+            tree.pop_back();
             return false;
         }
         if (cur.first == "rbrace") {
+            sub += " rbrace ";
             cur = lexer.getNextLexem();
+            tree.pop_back();
             return true;
         }
     }
     else if (cur.first == "kwreturn") {
+        sub += " kwreturn ";
         cur = lexer.getNextLexem();
+        tree.push_back(0);
         if (!E(tree)) {
+            tree.pop_back();
             return false;
         }
+        if (cur.first == "semicolon") {
+            sub += " semicolon ";
+            cur = lexer.getNextLexem();
+        }
+        tree.pop_back();
         return true;
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::AssignOrCallOp() {
+bool Syntax::AssignOrCallOp(vector <int>& tree) {
+    Tree(tree, "AssignOrCallOp");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
-    if (AssignOrCall()) {
+    tree.push_back(0);
+    if (AssignOrCall(tree)) {
         if (cur.first == "semicolon") {
+            sub += " semicolon ";
             cur = lexer.getNextLexem();
+            tree.pop_back();
             return true;
         }
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::AssignOrCall() {
+bool Syntax::AssignOrCall(vector <int>& tree) {
+    Tree(tree, "AssignOrCall");
     if (cur == LEX_EOF) {
         return false;
     }
     if (cur.first == "id") {
+        sub += " ";
+        sub += cur.second;
+        sub += " ";
         cur = lexer.getNextLexem();
-        if (!AssignOrCallList()) {
+        tree.push_back(0);
+        if (!AssignOrCallList(tree)) {
+            tree.pop_back();
             return false;
         }
+        tree.pop_back();
         return true;
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::AssignOrCallList() {
+bool Syntax::AssignOrCallList(vector <int>& tree) {
+    Tree(tree, "AssignOrCallList");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "opassign") {
+        sub += " opassign ";
         cur = lexer.getNextLexem();
+        tree.push_back(0);
         if (!E(tree)) {
+            tree.pop_back();
             return false;
         }
+        tree.pop_back();
         return true;
     }
     else if (cur.first == "lpar") {
+        sub += " lpar ";
         cur = lexer.getNextLexem();
-        if (!ArgList()) {
+        tree.push_back(0);
+        if (!ArgList(tree)) {
+            tree.pop_back();
             return false;
         }
         if (cur.first == "rpar") {
+            sub += " rpar ";
             cur = lexer.getNextLexem();
+            tree.pop_back();
             return true;
         }
+        tree.pop_back();
         return false;
     }
+    tree.pop_back();
     return false;
 }
-bool Syntax::WhileOp() {
+bool Syntax::WhileOp(vector <int>& tree) {
+    Tree(tree, "WhileOp");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "kwwhile") {
+        sub += " kwwhile ";
         cur = lexer.getNextLexem();
         if (cur.first == "lpar") {
+            sub += " lpar ";
             cur = lexer.getNextLexem();
+            tree.push_back(1);
             if (!E(tree)) {
+                tree.pop_back();
                 return false;
             }
             if (cur.first == "rpar") {
+                sub += " rpar ";
                 cur = lexer.getNextLexem();
-                if (!Stmt()) {
+                tree.push_back(0);
+                if (!Stmt(tree)) {
+                    tree.pop_back();
                     return false;
                 }
+                tree.pop_back();
                 return true;
             }
         }
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::ForOp() {
+bool Syntax::ForOp(vector <int>& tree) {
+    Tree(tree, "ForOp");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "kwfor") {
+        sub += " kwfor ";
         cur = lexer.getNextLexem();
         if (cur.first == "lpar") {
+            sub += " lpar ";
             cur = lexer.getNextLexem();
-            if (!ForInit()) {
+            tree.push_back(1);
+            if (!ForInit(tree)) {
+                tree.pop_back();
                 return false;
             }
             if (cur.first == "semicolon") {
+                sub += " semicolon ";
                 cur = lexer.getNextLexem();
-                if (!ForExp()) {
+                tree.push_back(1);
+                if (!ForExp(tree)) {
+                    tree.pop_back();
                     return false;
                 }
                 if (cur.first == "semicolon") {
+                    sub += " semicolon ";
                     cur = lexer.getNextLexem();
-                    if (!ForLoop()) {
+                    tree.push_back(1);
+                    if (!ForLoop(tree)) {
+                        tree.pop_back();
                         return false;
                     }
                     if (cur.first == "rpar") {
+                        sub += " rpar ";
                         cur = lexer.getNextLexem();
-                        if (!Stmt()) {
+                        tree.push_back(0);
+                        if (!Stmt(tree)) {
+                            tree.pop_back();
                             return false;
                         }
+                        tree.pop_back();
                         return true;
                     }
                 }
             }
         }
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::ForInit() {
+bool Syntax::ForInit(vector <int>& tree) {
+    Tree(tree, "ForInit");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
-    if (!AssignOrCall()) {
+    tree.push_back(0);
+    if (!AssignOrCall(tree)) {
+        tree.pop_back();
         return false;
     }
-    return false;
+    tree.pop_back();
+    return true;
 }
 
-bool Syntax::ForExp() {
+bool Syntax::ForExp(vector <int>& tree) {
+    Tree(tree, "ForExp");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
+    tree.push_back(0);
     if (!E(tree)) {
-        return false;
+        tree.pop_back();
+        return true;
     }
-    return false;
+    tree.pop_back();
+    return true;
 }
 
-bool Syntax::ForLoop() {
+bool Syntax::ForLoop(vector <int>& tree) {
+    Tree(tree, "FoorLoop");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
     if (cur.first == "opinc") {
+        sub += " opinc ";
         cur = lexer.getNextLexem();
         if (cur.first == "id") {
+            sub += " ";
+            sub += cur.second;
+            sub += " ";
             cur = lexer.getNextLexem();
+            tree.pop_back();
             return true;
         }
     }
-    else if (!AssignOrCall()) {
+    tree.push_back(0);
+    if (!AssignOrCall(tree)) {
+        tree.pop_back();
         return false;
     }
-    return false;
+    tree.pop_back();
+    return true;
 }
 
-bool Syntax::IfOp() {
+bool Syntax::IfOp(vector <int>& tree) {
+    Tree(tree, "IfOp");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "kwif") {
+        sub += " kwif ";
         cur = lexer.getNextLexem();
         if (cur.first == "lpar") {
+            sub += " lpar ";
             cur = lexer.getNextLexem();
+            tree.push_back(1);
             if (!E(tree)) {
+                tree.pop_back();
                 return false;
             }
             if (cur.first == "rpar") {
+                sub += " rpar ";
                 cur = lexer.getNextLexem();
-                if (!Stmt()) {
+                tree.push_back(1);
+                if (!Stmt(tree)) {
+                    tree.pop_back();
                     return false;
                 }
-                if (!ElsePart()) {
+                tree.push_back(0);
+                if (!ElsePart(tree)) {
+                    tree.pop_back();
                     return false;
                 }
+                tree.pop_back();
                 return true;
             }
         }
 
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::ElsePart() {
+bool Syntax::ElsePart(vector <int>& tree) {
+    Tree(tree, "ElsePart");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
     if (cur.first == "kwelse") {
+        sub += " kwelse ";
         cur = lexer.getNextLexem();
-        if (!Stmt()) {
+        tree.push_back(0);
+        if (!Stmt(tree)) {
+            tree.pop_back();
             return false;
         }
+        tree.pop_back();
         return true;
     }
-    return false;
+    tree.pop_back();
+    return true;
 }
 
-bool Syntax::SwitchOp() {
+bool Syntax::SwitchOp(vector <int>& tree) {
+    Tree(tree, "SwitchOp");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "kwswitch") {
+        sub += " kwswitch ";
         cur = lexer.getNextLexem();
         if (cur.first == "lpar") {
+            sub += " lpar ";
             cur = lexer.getNextLexem();
+            tree.push_back(1);
             if (!E(tree)) {
+                tree.pop_back();
                 return false;
             }
             if (cur.first == "rpar") {
+                sub += " rpar ";
                 cur = lexer.getNextLexem();
                 if (cur.first == "lbrace") {
+                    sub += " lbrace ";
                     cur = lexer.getNextLexem();
-                    if (!Cases()) {
+                    tree.push_back(0);
+                    if (!Cases(tree)) {
+                        tree.pop_back();
                         return false;
                     }
                     if (cur.first == "rbrace") {
+                        sub += " rbrace ";
                         cur = lexer.getNextLexem();
+                        tree.pop_back();
                         return true;
                     }
                 }
             }
         }
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::Cases() {
+bool Syntax::Cases(vector <int>& tree) {
+    Tree(tree, "Cases");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
-    if (!Acase()) {
+    tree.push_back(1);
+    if (!Acase(tree)) {
+        tree.pop_back();
         return false;
     }
-    if (!CasesList()) {
+    tree.push_back(0);
+    if (!CasesList(tree)) {
+        tree.pop_back();
         return false;
     }
+    tree.pop_back();
     return true;
 }
 
-bool Syntax::CasesList() {
+bool Syntax::CasesList(vector <int>& tree) {
+    Tree(tree, "CasesList");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return true;
     }
-    if (!Acase()) {
+    tree.push_back(1);
+    if (!Acase(tree)) {
+        tree.pop_back();
         return false;
     }
-    if (!CasesList()) {
+    tree.push_back(0);
+    if (!CasesList(tree)) {
+        tree.pop_back();
         return false;
     }
-    return false;
+    tree.pop_back();
+    return true;
 }
 
-bool Syntax::Acase() {
+bool Syntax::Acase(vector <int>& tree) {
+    Tree(tree, "Acase");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "kwcase") {
+        sub += " kwcase ";
         cur = lexer.getNextLexem();
         if (cur.first == "num") {
+            sub += " ";
+            sub += cur.second;
+            sub += " ";
             cur = lexer.getNextLexem();
             if (cur.first == "colon") {
+                sub += " colon ";
                 cur = lexer.getNextLexem();
-                if (!Stmt()) {
+                tree.push_back(0);
+                if (!Stmt(tree)) {
+                    tree.pop_back();
                     return false;
                 }
+                tree.pop_back();
                 return true;
             }
         }
     }
     else if (cur.first == "kwdefault") {
+        sub += " kwdefault ";
         cur = lexer.getNextLexem();
-        if (!Stmt()) {
+        tree.push_back(0);
+        if (!Stmt(tree)) {
+            tree.pop_back();
             return false;
         }
+        tree.pop_back();
         return true;
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::IOp() {
+bool Syntax::IOp(vector <int>& tree) {
+    Tree(tree, "IOp");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "kwin") {
+        sub += " kwin ";
         cur = lexer.getNextLexem();
         if (cur.first == "id") {
+            sub += " ";
+            sub += cur.second;
+            sub += " ";
             cur = lexer.getNextLexem();
             if (cur.first == "semicolon") {
+                sub += " semicolon ";
                 cur = lexer.getNextLexem();
+                tree.pop_back();
                 return true;
             }
         }
     }
+    tree.pop_back();
     return false;
 }
 
-bool Syntax::OOp() {
+bool Syntax::OOp(vector <int>& tree) {
+    Tree(tree, "OOp");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "kwout") {
+        sub += " kwout ";
         cur = lexer.getNextLexem();
+        tree.push_back(0);
         if (!E(tree)) {
+            tree.pop_back();
             return false;
         }
         if (cur.first == "semicolon") {
+            sub += " semicolon ";
             cur = lexer.getNextLexem();
+            tree.pop_back();
             return true;
         }
+        tree.pop_back();
         return true;
     }
+    tree.pop_back();
     return false;
 }

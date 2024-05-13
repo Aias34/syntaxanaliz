@@ -15,32 +15,33 @@ public:
 
     Syntax(std::istream&);
     virtual ~Syntax();
-    bool Type();
-    bool DeclareStmt();
-    bool DeclareStmtList();
-    bool DeclVarList();
-    bool InitVar();
-    bool ParamList();
-    bool ParamListList();
-    bool StmtList();
-    bool Stmt();
-    bool AssignOrCallOp();
-    bool AssignOrCall();
-    bool AssignOrCallList();
-    bool ArgList();
-    bool ForInit();
-    bool ForExp();
-    bool ForLoop();
-    bool ElsePart();
-    bool Cases();
-    bool Acase();
-    bool CasesList();
-    bool ForOp();
-    bool IfOp();
-    bool SwitchOp();
-    bool IOp();
-    bool WhileOp();
-    bool OOp();
+    bool Type(vector <int>& tree);
+    bool DeclareStmt(vector <int>& tree);
+    bool DeclareStmtList(vector <int>& tree);
+    bool DeclVarList(vector <int>& tree);
+    bool InitVar(vector <int>& tree);
+    bool ParamList(vector <int>& tree);
+    bool ParamListList(vector <int>& tree);
+    bool StmtList(vector <int>& tree);
+    bool Stmt(vector <int>& tree);
+    bool AssignOrCallOp(vector <int>& tree);
+    bool AssignOrCall(vector <int>& tree);
+    bool AssignOrCallList(vector <int>& tree);
+    bool ArgList(vector <int>& tree);
+    bool ArgListL(vector <int>& tree);
+    bool ForInit(vector <int>& tree);
+    bool ForExp(vector <int>& tree);
+    bool ForLoop(vector <int>& tree);
+    bool ElsePart(vector <int>& tree);
+    bool Cases(vector <int>& tree);
+    bool Acase(vector <int>& tree);
+    bool CasesList(vector <int>& tree);
+    bool ForOp(vector <int>& tree);
+    bool IfOp(vector <int>& tree);
+    bool SwitchOp(vector <int>& tree);
+    bool IOp(vector <int>& tree);
+    bool WhileOp(vector <int>& tree);
+    bool OOp(vector <int>& tree);
     bool E(vector <int>& tree);
     bool E7(vector <int>& tree);
     bool E7L(vector <int>& tree);
@@ -55,6 +56,7 @@ public:
     bool E2(vector <int>& tree);
     bool E1(vector <int>& tree);
     bool E1L(vector <int>& tree);
+    bool Tree(vector <int>& tree, string name);
 
 protected:
 
