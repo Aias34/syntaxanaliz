@@ -15,7 +15,7 @@ bool Syntax::Tree(vector <int>& tree, string name) {
         }
         if (i == tree.size() - 1) {
             if (tree[i] == 0) {
-                d += "|_";
+                d += "L ";
             }
             else if (tree[i] == 1) {
                 d += "|-";
@@ -40,7 +40,7 @@ bool Syntax::Tree(vector <int>& tree, string name) {
 Syntax::Syntax(istream& stream) : lexer{ stream }
 {
     cur = lexer.getNextLexem();
-    bool res = E(tree);
+    bool res = StmtList(tree);
 
     if (res && cur == LEX_EOF) {
         cout << "True" << endl;
@@ -416,8 +416,10 @@ bool Syntax::E1(vector <int>& tree) {
         return true;
     }
     else if (cur.first == "id") {
+        sub += " ";
+        sub += cur.second;
+        sub += " ";
         cur = lexer.getNextLexem();
-        sub += " id ";
         tree.push_back(0);
         if (!E1L(tree)) {
             tree.pop_back();
@@ -487,7 +489,6 @@ bool Syntax::ArgListL(vector <int>& tree) {
         tree.pop_back();
         return true;
     }
-    tree.push_back(1);
     if (cur.first == "comma") {
         sub += " comma ";
         cur = lexer.getNextLexem();
@@ -705,10 +706,10 @@ bool Syntax::ParamList(vector <int>& tree) {
         return false;
     }
     if (cur.first == "id") {
-        cur = lexer.getNextLexem();
         sub += " ";
         sub += cur.second;
         sub += " ";
+        cur = lexer.getNextLexem(); 
         tree.push_back(0);
         if (!ParamListList(tree)) {
             tree.pop_back();
@@ -761,12 +762,12 @@ bool Syntax::StmtList(vector <int>& tree) {
         return true;
     }
     if (cur.first == "rbrace") {
+        tree.pop_back();
         return true;
     }
     tree.push_back(1);
     if (!Stmt(tree)) {
         tree.pop_back();
-
         return false;
     }
     tree.push_back(0);
@@ -918,6 +919,7 @@ bool Syntax::AssignOrCallOp(vector <int>& tree) {
 bool Syntax::AssignOrCall(vector <int>& tree) {
     Tree(tree, "AssignOrCall");
     if (cur == LEX_EOF) {
+        tree.pop_back();
         return false;
     }
     if (cur.first == "id") {
@@ -1354,3 +1356,21 @@ bool Syntax::OOp(vector <int>& tree) {
     tree.pop_back();
     return false;
 }
+
+//bool Syntax::OOpL(vector <int>& tree) {
+//    Tree(tree, "OOpL");
+//    if (cur == LEX_EOF) {
+//        tree.pop_back();
+//        return true;
+//    }
+//    tree.push_back(0);
+//    if (!E(tree)) {
+//        tree.pop_back();
+//        return true;
+//    }
+//    if (cur.first == "kwstr") {
+//        sub += " kwstr ";
+//        cur = lexer.getNextLexem();
+//        tree.pop_back();
+//        return true;
+//    }

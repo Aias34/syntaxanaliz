@@ -57,6 +57,7 @@ public:
     bool E1(vector <int>& tree);
     bool E1L(vector <int>& tree);
     bool Tree(vector <int>& tree, string name);
+    bool OOpL(vector <int>& tree, string name);
 
 protected:
 

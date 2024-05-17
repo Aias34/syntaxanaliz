@@ -16,11 +16,8 @@ int abc(int a, int b) {
 }
 
 int main() {
-    string abc = "1+1";
-    stringstream prog{ abc };
-    vector<Lexem> after;
-
-    Syntax syntax(prog);
+    ifstream tex("asd.txt");
+    Syntax syntax(tex);
     /*
     Lexer lexer(prog);
     auto lexem = lexer.getNextLexem();
