@@ -508,19 +508,21 @@ bool Syntax::ArgListL(vector <int>& tree) {
 }
 
 bool Syntax::Type(vector <int>& tree) {
+	if (cur.first == "kwint" || cur.first == "kwchar") {
+		sub += cur.first;
+		sub += " ";
+	}
     Tree(tree, "Type");
     if (cur == LEX_EOF) {
         tree.pop_back();
         return false;
     }
     if (cur.first == "kwint") {
-        sub += " kwint ";
         cur = lexer.getNextLexem();
         tree.pop_back();
         return true;
     }
     else if (cur.first == "kwchar") {
-        sub += " kwchar ";
         cur = lexer.getNextLexem();
         tree.pop_back();
         return true;
@@ -634,7 +636,6 @@ bool Syntax::DeclareStmtList(vector <int>& tree) {
 }
 
 bool Syntax::DeclVarList(vector <int>& tree) {
-    tree.push_back(0);
     Tree(tree, "DeclVarList");
     if (cur == LEX_EOF) {
         tree.pop_back();
